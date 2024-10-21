@@ -4,10 +4,10 @@ import {
 	Environments,
 	type Link,
 	type userInfoType
-} from '$lib/types';
+} from '../types';
 
 const getLocalHostPath = ({ language, path }: { language?: string; path: string }) => {
- 	return [
+	return [
 		{
 			name: 'Localhost',
 			href: `http://localhost:8081/${language || DEFAULT_PROD_LANG}/${path}`
@@ -136,12 +136,15 @@ export const linkCreator = (userInfo: userInfoType) => {
 			...getProdPath({ language, path }),
 			...getStagePreviewPath({ language, path }),
 			...getLocalHostPath({ language, path })
-
 		];
 	}
 
 	if (environment?.name === Environments.DEV_PREVIEW) {
-		links = [...links, ...getStagePreviewPath({ language, path }), ...getLocalHostPath({ language, path })];
+		links = [
+			...links,
+			...getStagePreviewPath({ language, path }),
+			...getLocalHostPath({ language, path })
+		];
 	}
 
 	if (environment?.name === Environments.STAGE_PREVIEW) {
@@ -149,7 +152,12 @@ export const linkCreator = (userInfo: userInfoType) => {
 	}
 
 	if (environment?.name === Environments.LOCALHOST) {
-		links = [...links, ...getDevPath({ language, path }), ...getProdPath({ language, path }), ...getStagePreviewPath({ language, path })];
+		links = [
+			...links,
+			...getDevPath({ language, path }),
+			...getProdPath({ language, path }),
+			...getStagePreviewPath({ language, path })
+		];
 	}
 
 	return links;
