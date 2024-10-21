@@ -2,7 +2,7 @@ import { Environment, Environments, type EnvironmentType } from '../types';
 
 export const evaluateEnvironment = (userInputValue: string) => {
 	let foundEnvironment: EnvironmentType | undefined;
-	if (userInputValue.includes('.com')) {
+	if (userInputValue.includes('ksb.com')) {
 		foundEnvironment = Environment.find((env) => env.name === Environments.PROD);
 	}
 
@@ -26,7 +26,7 @@ export const evaluateEnvironment = (userInputValue: string) => {
 		foundEnvironment = Environment.find((env) => env.name === Environments.LOCALHOST);
 	}
 
-	if (userInputValue.includes('bitgrip.atlassian.net')) {
+	if (userInputValue.includes('bitgrip.atlassian.net/browse')) {
 		foundEnvironment = Environment.find((env) => env.name === Environments.JIRA);
 	}
 

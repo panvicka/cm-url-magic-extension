@@ -70,7 +70,7 @@ export const Environment: EnvironmentType[] = [
 	},
 	{
 		name: Environments.JIRA,
-		label: 'bitgrip.atlassian.net',
-		path: 'localhost:8081'
+		label: 'Jira',
+		path: 'bitgrip.atlassian.net'
 	}
 ];
