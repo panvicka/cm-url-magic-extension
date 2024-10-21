@@ -800,6 +800,7 @@ var app = (function () {
 	    Environments["PROD"] = "PROD";
 	    Environments["PROD_PREVIEW"] = "PROD_PREVIEW";
 	    Environments["LOCALHOST"] = "LOCALHOST";
+	    Environments["JIRA"] = "JIRA";
 	})(Environments || (Environments = {}));
 	const Environment = [
 	    {
@@ -831,6 +832,11 @@ var app = (function () {
 	        name: Environments.LOCALHOST,
 	        label: 'localhost',
 	        path: 'localhost:8081'
+	    },
+	    {
+	        name: Environments.JIRA,
+	        label: 'bitgrip.atlassian.net',
+	        path: 'localhost:8081'
 	    }
 	];
 
@@ -853,6 +859,9 @@ var app = (function () {
 	    }
 	    if (userInputValue.includes('localhost')) {
 	        foundEnvironment = Environment.find((env) => env.name === Environments.LOCALHOST);
+	    }
+	    if (userInputValue.includes('bitgrip.atlassian.net')) {
+	        foundEnvironment = Environment.find((env) => env.name === Environments.JIRA);
 	    }
 	    return foundEnvironment;
 	};
@@ -1268,7 +1277,7 @@ var app = (function () {
 		return child_ctx;
 	}
 
-	// (85:1) {:else}
+	// (99:1) {:else}
 	function create_else_block(ctx) {
 		let each_1_anchor;
 		let each_value = ensure_array_like_dev(/*links*/ ctx[1]);
@@ -1332,14 +1341,14 @@ var app = (function () {
 			block,
 			id: create_else_block.name,
 			type: "else",
-			source: "(85:1) {:else}",
+			source: "(99:1) {:else}",
 			ctx
 		});
 
 		return block;
 	}
 
-	// (83:1) {#if !isActive}
+	// (97:1) {#if !isActive}
 	function create_if_block(ctx) {
 		let div;
 
@@ -1348,7 +1357,7 @@ var app = (function () {
 				div = element("div");
 				div.textContent = "Sorry! Not sure what to do with this URL...";
 				attr_dev(div, "class", "container");
-				add_location(div, file, 95, 2, 3409);
+				add_location(div, file, 109, 2, 3974);
 			},
 			m: function mount(target, anchor) {
 				insert_dev(target, div, anchor);
@@ -1365,14 +1374,14 @@ var app = (function () {
 			block,
 			id: create_if_block.name,
 			type: "if",
-			source: "(83:1) {#if !isActive}",
+			source: "(97:1) {#if !isActive}",
 			ctx
 		});
 
 		return block;
 	}
 
-	// (86:2) {#each links as link}
+	// (100:2) {#each links as link}
 	function create_each_block(ctx) {
 		let div1;
 		let a0;
@@ -1413,29 +1422,29 @@ var app = (function () {
 				attr_dev(a0, "href", a0_href_value = /*link*/ ctx[5].href);
 				attr_dev(a0, "target", "_blank");
 				attr_dev(a0, "class", "contrast");
-				add_location(a0, file, 99, 4, 3558);
+				add_location(a0, file, 113, 4, 4123);
 				attr_dev(path, "stroke-linecap", "round");
 				attr_dev(path, "stroke-linejoin", "round");
 				attr_dev(path, "d", "M15.75 17.25v3.375c0 .621-.504 1.125-1.125 1.125h-9.75a1.125 1.125 0 0 1-1.125-1.125V7.875c0-.621.504-1.125 1.125-1.125H6.75a9.06 9.06 0 0 1 1.5.124m7.5 10.376h3.375c.621 0 1.125-.504 1.125-1.125V11.25c0-4.46-3.243-8.161-7.5-8.876a9.06 9.06 0 0 0-1.5-.124H9.375c-.621 0-1.125.504-1.125 1.125v3.5m7.5 10.375H9.375a1.125 1.125 0 0 1-1.125-1.125v-9.25m12 6.625v-1.875a3.375 3.375 0 0 0-3.375-3.375h-1.5a1.125 1.125 0 0 1-1.125-1.125v-1.5a3.375 3.375 0 0 0-3.375-3.375H9.75");
-				add_location(path, file, 109, 7, 3857);
+				add_location(path, file, 123, 7, 4422);
 				attr_dev(svg, "xmlns", "http://www.w3.org/2000/svg");
 				attr_dev(svg, "fill", "none");
 				attr_dev(svg, "viewBox", "0 0 24 24");
 				attr_dev(svg, "stroke-width", "1.5");
 				attr_dev(svg, "stroke", "currentColor");
 				attr_dev(svg, "class", "svelte-e4axp7");
-				add_location(svg, file, 102, 6, 3694);
+				add_location(svg, file, 116, 6, 4259);
 				attr_dev(button, "class", "svelte-e4axp7");
-				add_location(button, file, 101, 5, 3658);
+				add_location(button, file, 115, 5, 4223);
 				attr_dev(a1, "href", a1_href_value = /*link*/ ctx[5].href);
 				attr_dev(a1, "target", "_blank");
-				add_location(a1, file, 116, 5, 4451);
+				add_location(a1, file, 130, 5, 5016);
 				attr_dev(div0, "class", "wrapper svelte-e4axp7");
-				add_location(div0, file, 100, 4, 3631);
+				add_location(div0, file, 114, 4, 4196);
 				attr_dev(div1, "class", "grid .container-fluid svelte-e4axp7");
-				add_location(div1, file, 98, 3, 3518);
+				add_location(div1, file, 112, 3, 4083);
 				attr_dev(hr, "class", "svelte-e4axp7");
-				add_location(hr, file, 119, 3, 4527);
+				add_location(hr, file, 133, 3, 5092);
 			},
 			m: function mount(target, anchor) {
 				insert_dev(target, div1, anchor);
@@ -1488,7 +1497,7 @@ var app = (function () {
 			block,
 			id: create_each_block.name,
 			type: "each",
-			source: "(86:2) {#each links as link}",
+			source: "(100:2) {#each links as link}",
 			ctx
 		});
 
@@ -1523,9 +1532,9 @@ var app = (function () {
 				document.title = "CM URL Magic Extension";
 				attr_dev(link_1, "rel", "stylesheet");
 				attr_dev(link_1, "href", "/build/bundle.css");
-				add_location(link_1, file, 90, 1, 3316);
+				add_location(link_1, file, 104, 1, 3881);
 				attr_dev(main, "class", "svelte-e4axp7");
-				add_location(main, file, 93, 0, 3383);
+				add_location(main, file, 107, 0, 3948);
 			},
 			l: function claim(nodes) {
 				throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
@@ -1619,7 +1628,6 @@ var app = (function () {
 			});
 		}
 
-		// Function to check if the active tab URL is relevant
 		const isActiveUrlRelevant = () => {
 			if (typeof chrome !== 'undefined' && chrome.tabs) {
 				chrome.tabs.query({ active: true, currentWindow: true }, tabs => {
@@ -1629,28 +1637,46 @@ var app = (function () {
 						console.log(tabs[0].url);
 
 						if (environment?.name) {
-							console.log('Relevant environment detected');
 							activeTabUrl = tabs[0].url;
 							$$invalidate(0, isActive = true); // Update isActive here inside the callback
 
-							if (activeTabUrl) {
+							if (environment.name === Environments.JIRA) {
+								userInfo.ticketNumber = evaluateTicketNumber(activeTabUrl);
+							} else {
+								// Re-evaluate and update userInfo and links for the new valid URL
 								userInfo.environment = evaluateEnvironment(activeTabUrl);
+
 								userInfo.ticketNumber = evaluateTicketNumber(activeTabUrl);
 								userInfo.language = evaluateLanguage(activeTabUrl);
 								userInfo.path = evaluatePath(activeTabUrl, userInfo.environment, userInfo.language);
-							} // userInfo.optionalTicketNumber = evaluateTicketNumber(optionalUserInput);
+							}
 
-							$$invalidate(1, links = linkCreator(userInfo));
+							$$invalidate(1, links = linkCreator(userInfo)); // Update links for the new URL
 							console.log(links);
 						} else {
-							$$invalidate(0, isActive = false); // If the environment is not relevant, set to false
+							// Invalid URL: Reset the state
+							$$invalidate(0, isActive = false);
+
+							$$invalidate(1, links = []); // Clear the links if the URL is invalid
+							activeTabUrl = ''; // Clear the active URL
+							console.log('Invalid URL or irrelevant environment');
 						}
 					} else {
-						$$invalidate(0, isActive = false); // No active tab or URL found
+						// No active tab or URL found, reset state
+						$$invalidate(0, isActive = false);
+
+						$$invalidate(1, links = []);
+						activeTabUrl = '';
+						console.log('No active tab or URL found');
 					}
 				});
 			} else {
-				$$invalidate(0, isActive = false); // If chrome API is not available, default to false
+				// If chrome API is not available, reset state
+				$$invalidate(0, isActive = false);
+
+				$$invalidate(1, links = []);
+				activeTabUrl = '';
+				console.log('Chrome API not available');
 			}
 		};
 
@@ -1671,6 +1697,7 @@ var app = (function () {
 			evaluatePath,
 			evaluateTicketNumber,
 			linkCreator,
+			Environments,
 			onMount,
 			copy,
 			Footer,

@@ -27,7 +27,8 @@ export enum Environments {
 	STAGE_PREVIEW = 'STAGE_PREVIEW',
 	PROD = 'PROD',
 	PROD_PREVIEW = 'PROD_PREVIEW',
-	LOCALHOST = 'LOCALHOST'
+	LOCALHOST = 'LOCALHOST',
+	JIRA = 'JIRA',
 }
 
 export type EnvironmentType = {
@@ -65,6 +66,11 @@ export const Environment: EnvironmentType[] = [
 	{
 		name: Environments.LOCALHOST,
 		label: 'localhost',
+		path: 'localhost:8081'
+	},
+	{
+		name: Environments.JIRA,
+		label: 'bitgrip.atlassian.net',
 		path: 'localhost:8081'
 	}
 ];

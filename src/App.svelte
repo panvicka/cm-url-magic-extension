@@ -6,7 +6,7 @@
 		evaluateTicketNumber
 	} from './lib/helpers/inputEvaluationHelpers';
 	import { linkCreator } from './lib/helpers/linkCreator';
-	import type { Link, userInfoType } from './lib/types';
+	import { Environments, type Link, type userInfoType } from './lib/types';
 	import './tailwind.css';
 	import { onMount } from 'svelte';
 	import { copy } from 'svelte-copy';
@@ -47,7 +47,6 @@
 		});
 	}
 
-	// Function to check if the active tab URL is relevant
 	const isActiveUrlRelevant = () => {
 		if (typeof chrome !== 'undefined' && chrome.tabs) {
 			chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
@@ -56,27 +55,42 @@
 					console.log(environment);
 					console.log(tabs[0].url);
 					if (environment?.name) {
-						console.log('Relevant environment detected');
 						activeTabUrl = tabs[0].url;
 						isActive = true; // Update isActive here inside the callback
-						if (activeTabUrl) {
+
+						if (environment.name === Environments.JIRA) {
+							userInfo.ticketNumber = evaluateTicketNumber(activeTabUrl);
+						} else {
+							// Re-evaluate and update userInfo and links for the new valid URL
 							userInfo.environment = evaluateEnvironment(activeTabUrl);
 							userInfo.ticketNumber = evaluateTicketNumber(activeTabUrl);
 							userInfo.language = evaluateLanguage(activeTabUrl);
 							userInfo.path = evaluatePath(activeTabUrl, userInfo.environment, userInfo.language);
-							// userInfo.optionalTicketNumber = evaluateTicketNumber(optionalUserInput);
 						}
-						links = linkCreator(userInfo);
+
+						links = linkCreator(userInfo); // Update links for the new URL
 						console.log(links);
 					} else {
-						isActive = false; // If the environment is not relevant, set to false
+						// Invalid URL: Reset the state
+						isActive = false;
+						links = []; // Clear the links if the URL is invalid
+						activeTabUrl = ''; // Clear the active URL
+						console.log('Invalid URL or irrelevant environment');
 					}
 				} else {
-					isActive = false; // No active tab or URL found
+					// No active tab or URL found, reset state
+					isActive = false;
+					links = [];
+					activeTabUrl = '';
+					console.log('No active tab or URL found');
 				}
 			});
 		} else {
-			isActive = false; // If chrome API is not available, default to false
+			// If chrome API is not available, reset state
+			isActive = false;
+			links = [];
+			activeTabUrl = '';
+			console.log('Chrome API not available');
 		}
 	};
 

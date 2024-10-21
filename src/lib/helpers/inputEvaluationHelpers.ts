@@ -26,6 +26,10 @@ export const evaluateEnvironment = (userInputValue: string) => {
 		foundEnvironment = Environment.find((env) => env.name === Environments.LOCALHOST);
 	}
 
+	if (userInputValue.includes('bitgrip.atlassian.net')) {
+		foundEnvironment = Environment.find((env) => env.name === Environments.JIRA);
+	}
+
 	return foundEnvironment;
 };
 
