@@ -12,6 +12,7 @@
 	import { copy } from 'svelte-copy';
 	import '@picocss/pico';
 	import Footer from './Footer.svelte';
+	import UserInputField from './UserInputField.svelte';
 
 	let isActive: boolean = false;
 	let activeTabUrl: string | undefined = '';
@@ -19,6 +20,8 @@
 	let links: Link[] = [];
 
 	let userInfo: userInfoType = {};
+
+	let optionalInputUrlParam: string = '';
 
 	// Listen for URL updates from the background script
 	if (typeof chrome !== 'undefined' && chrome.tabs) {
@@ -134,9 +137,25 @@
 			<hr />
 		{/each}
 	{/if}
+
+	<form>
+		<fieldset>
+			<UserInputField
+				bind:value={optionalInputUrlParam}
+				on:change={() => {
+					console.log(optionalInputUrlParam);
+					userInfo.optionalTicketNumber = evaluateTicketNumber(optionalInputUrlParam);
+          links = linkCreator(userInfo); // Update links for the new URL
+				}}
+				label="Optional ticket number if needed..."
+			/>
+		</fieldset>
+	</form>
 </main>
 
-<Footer />
+<footer>
+	<Footer />
+</footer>
 
 <style>
 	button {
